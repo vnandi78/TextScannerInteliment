@@ -33,6 +33,8 @@ import com.inteliment.wordcounter.service.WordCounterService;
 @RestController
 public class WordCountController {
 	
+	//-------------------Search for givens words and return their number of occurances/counts--------------------------------------------------------
+	
 	@RequestMapping(value="/counter-api/search", method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<List <WordsWithCount>> search(@RequestBody SearchInput searchInput){
 		WordCounterService.initialize();
@@ -49,6 +51,8 @@ public class WordCountController {
 		
 		return new ResponseEntity<List<WordsWithCount>>(list, HttpStatus.OK);
 	}
+	
+	//-------------------List top {requestedNumber} of Words with their counts in descending order--------------------------------------------------------
 	
 
 	@RequestMapping(value="/counter-api/top/{requestedNumber}",  method=RequestMethod.GET)	
@@ -88,7 +92,7 @@ public class WordCountController {
         }
 		
         csvWriter.close();
-		//return new ResponseEntity<List<WordsWithCount>>(list, HttpStatus.OK);
+		
 	}
 	
 
