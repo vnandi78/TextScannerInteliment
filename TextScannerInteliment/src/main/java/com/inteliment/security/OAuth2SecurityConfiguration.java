@@ -32,6 +32,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	System.out.println("in OAuth2SecurityConfiguration configure**********************************//////");
         http
         .csrf().disable()
         .anonymous().disable()
@@ -45,7 +46,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
  
- 
+
     @Bean
     public TokenStore tokenStore() {
         return new InMemoryTokenStore();

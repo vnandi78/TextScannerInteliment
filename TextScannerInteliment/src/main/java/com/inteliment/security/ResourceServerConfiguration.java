@@ -1,5 +1,6 @@
 package com.inteliment.security;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -20,12 +21,14 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
  
     @Override
     public void configure(HttpSecurity http) throws Exception {
+    	System.out.println("in ResourceServerConfiguration configure********************************///////////");
         http.
         anonymous().disable()
-        .requestMatchers().antMatchers("/**")
+        .requestMatchers().antMatchers("/counter-api/**")
         .and().authorizeRequests()
-        .antMatchers("/**").access("hasRole('ADMIN')")
+        .antMatchers("/counter-api/**").access("hasRole('ADMIN')")        
         .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+        
     }
  
 }
